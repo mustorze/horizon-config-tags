@@ -3,7 +3,7 @@
 namespace Mustorze\ConfigTags;
 
 use Illuminate\Support\ServiceProvider;
-use Laravel\Horizon\Contracts\TagRepository;
+use Mustorze\ConfigTags\Services\HorizonConfigTagsService;
 
 class HorizonConfigTagsProvider extends ServiceProvider
 {
@@ -12,15 +12,6 @@ class HorizonConfigTagsProvider extends ServiceProvider
      */
     public function boot()
     {
-        $repository = app(TagRepository::class);
-        $defaultTags = config('horizon.monitored_tags');
-
-        if (! is_array($defaultTags)) {
-            return;
-        }
-
-        foreach ($defaultTags as $tag) {
-            $repository->monitor($tag);
-        }
+        HorizonConfigTagsService::boot();
     }
 }
