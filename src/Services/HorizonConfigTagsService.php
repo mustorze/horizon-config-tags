@@ -13,7 +13,7 @@ class HorizonConfigTagsService
      */
     public static function boot()
     {
-        if (!app()->environment(self::$environment)) {
+        if (app()->environment(self::$environment) === false) {
             return;
         }
 
