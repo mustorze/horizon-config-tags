@@ -13,7 +13,7 @@ class HorizonConfigTagsService
      */
     public static function boot()
     {
-        if (app()->environment(self::$environment) === false) {
+        if (app()->environment(self::$environment) === false OR config('queue.default') != 'redis') {
             return;
         }
 
